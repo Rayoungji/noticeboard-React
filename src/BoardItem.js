@@ -8,11 +8,15 @@ export default class BoardItem extends Component {
     this.props.onDelete(this.props.row.brdno)
   
     }
+
+    handleSelectRow= (e)=>{
+        this.props.onSelectRow(this.props.row)
+    }
     render() {
         return(
             <tr>
                 <td>{this.props.row.brdno}</td>
-                <td>{this.props.row.brdtitle}</td>
+                <td><a href='$' onClick={this.handleSelectRow}>{this.props.row.brdtitle}</a></td>
                 <td>{this.props.row.brdwriter}</td>
                 <td>{this.props.row.brddate.toLocaleDateString('ko-KR')}</td>
                 <td align='center'><button type='delete' onClick={this.handleRemove}>x</button></td>

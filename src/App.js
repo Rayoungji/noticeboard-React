@@ -6,6 +6,7 @@ import BoardItem from './BoardItem';
 import BoardForm from './BoardForm';
 
 class App extends Component {
+
   state = {
     maxNo:3,
     boards: [
@@ -38,12 +39,16 @@ handleRemove = (brdno) => {
   })
 }
 
+handleSelectRow=(row)=>{
+    this.BoardForm.handleSelectRow(row);
+}
+
 render() {
     const { boards } = this.state;
 
     return (
         <div>
-           <BoardForm onSaveData={this.handleSaveData}/>
+           <BoardForm onSaveData={this.handleSaveData} ref={(ref)=>this.BoardForm=ref} />
             <table border="1">
                 <tbody>
                 <tr align="center">
@@ -55,7 +60,7 @@ render() {
                 </tr>
                 {
                     boards.map(row =>
-                        (<BoardItem key={row.brdno} row={row} onDelete={this.handleRemove} />)
+                        (<BoardItem key={row.brdno} row={row} onDelete={this.handleRemove} onSelectRow={this.handleSelectRow} />)
                     )
                 }
                 </tbody>

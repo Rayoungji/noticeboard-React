@@ -18,16 +18,21 @@ export default class BoardForm extends Component {
          e.preventDefault();
          //원래는 서버로 보내는데 여기서는 app의 board배열로 데이터를 보낸다
         this.props.onSaveData(this.state);
+        //값을 받은 후 초기화
          this.setState({});
      }
     
+     handleSelectRow= (row)=>{
+         this.setState(row);
+     }
     
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form>
+                {/*JSX attribute on 관련된것들 알아보기 */}
                 <input placeholder="title" name="brdtitle" onChange={this.handleChange}/>
                 <input placeholder="name" name="brdwriter" onChange={this.handleChange}/>
-                <button type="submit">Save</button>
+                <button type="submit" onClick={this.handleSubmit}>Save</button>
             </form>
         );
     }
